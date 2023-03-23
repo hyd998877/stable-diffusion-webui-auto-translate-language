@@ -87,7 +87,7 @@ def init():
         # trans_config['auto_language_enabled'] = False
         trans_config['show_en_enabled'] = True
         trans_config['to_lan'] = 'zh-CN'
-        trans_config['transer'] = transers[0]
+        trans_config['transer'] = 'tp_bing'
     trans_config['trans_succ'] = trans_succ
     check_transer()
 

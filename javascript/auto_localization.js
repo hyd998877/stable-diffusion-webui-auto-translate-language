@@ -64,7 +64,7 @@ function get_config(filePath) {
 
 function auto_save_setting() {
   var data = {
-    auto_language_enabled:gradioApp().querySelector('#auto_language_enabled input').checked,
+    // auto_language_enabled:gradioApp().querySelector('#auto_language_enabled input').checked,
     show_en_enabled:gradioApp().querySelector('#show_en_enabled input').checked,
     to_lan:gradioApp().querySelector('#auto_to_lang select').value,
     transer:gradioApp().querySelector('#auto_langer_drop select').value

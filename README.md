@@ -12,6 +12,12 @@ Language extension allows users to write prompts in their native language and au
 - [License](#license)
 
 ### Getting Started
+* Translate Prompt with dialog
+![](res/GIF1.gif)  
+* Translate Setting
+![](res/GIF2.gif)  
+* Auto Translate UI
+![](res/GIF3.gif)  
 
 ### Installation
 #### Method 1
@@ -24,6 +30,8 @@ Then fill in the first text box with https://github.com/hyd998877/Stable-Diffusi
 #### Method 2
 ```
 git clone https://github.com/hyd998877/Stable-Diffusion-Webui-Auto-Translate-Language
+cd Stable-Diffusion-Webui-Auto-Translate-Language
+pip install -r requirements.txt
 ```
 
 #### NetworkError
