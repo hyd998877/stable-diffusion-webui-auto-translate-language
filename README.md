@@ -8,7 +8,7 @@ Language extension allows users to write prompts in their native language and au
 - [Supported Translation Services](#supported-translation-services)
 - [Installation](#installation)
 - [Getting Started and Screenshots](#getting-started)
-- [NetworkError or ProxyError]
+- [NetworkError]
 - [License](#license)
 
 ### Getting Started
