@@ -251,6 +251,7 @@ def transAPI(demo: gr.Blocks, app: FastAPI):
     async def progress_get():
         res_data = {"error": 0, "completed": False, "progress":0, "textinfo":"", "active":False, "trans_succ":trans_succ}
         global m_temp_trans_list
+        global m_temp_transed_num
         if m_temp_trans_list:
             res_data['active'] = True
             res_data['progress'] = m_temp_transed_num/len(m_temp_trans_list)
