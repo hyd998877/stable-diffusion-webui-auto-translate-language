@@ -31,7 +31,7 @@ Then fill in the first text box with https://github.com/hyd998877/stable-diffusi
 #### Method 2
 ```
 git clone https://github.com/hyd998877/stable-diffusion-webui-auto-translate-language
-cd Stable-Diffusion-Webui-Auto-Translate-Language
+cd stable-diffusion-webui-auto-translate-language
 pip install -r requirements.txt
 ```
 
