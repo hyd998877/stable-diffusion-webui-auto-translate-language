@@ -1,4 +1,4 @@
-# Stable-Diffusion-Webui-Auto-Translate-Language
+# stable-diffusion-webui-auto-translate-language
 Language extension allows users to write prompts in their native language and automatically translate UI, without the need to manually download configuration files. New plugins can also be translated.
 - This is a library which aims to bring free, multiple, enjoyable
 - Easy to use, no need to set the translation appid
