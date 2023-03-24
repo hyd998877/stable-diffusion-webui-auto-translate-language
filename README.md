@@ -13,6 +13,7 @@ Language extension allows users to write prompts in their native language and au
 
 ### Getting Started
 * Translate Prompt with dialog
+![](res/opendialog.png)
 ![](res/GIF1.gif)  
 * Translate Setting
 ![](res/GIF2.gif)  
