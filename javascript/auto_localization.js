@@ -530,43 +530,43 @@ function show_trans_dialg(to_lan, top, left, title) {
     }
     `
 
+  function add_tool_btn(parent, html, id, title, cb){
+      const btn = document.createElement('button');
+      btn.innerHTML=html
+      btn.classList.add('gr-button')
+      btn.classList.add('gr-button-lg')
+      btn.classList.add('gr-button-tool')
+      btn.id=id
+      btn.title = title
+      parent.appendChild(btn)
+      btn.addEventListener('click', cb)
+  }
+
   function add_div(){
     // add btn
     var txt_parent = gradioApp().getElementById('txt2img_tools')
     var img_parent = gradioApp().getElementById('img2img_tools')
     if(!txt_parent || !img_parent) return false;
     if(!gradioApp().getElementById('txt_trans_prompt')){
-      var txt_html = `
-        <button class="gr-button gr-button-lg gr-button-tool" id="txt_trans_prompt" title="translate prompt.">en2</button>
-        <button class="gr-button gr-button-lg gr-button-tool" id="txt_trans_neprompt" title="translate negative prompt.">N2</button>
-      `
-      txt_parent.innerHTML+=txt_html
-      gradioApp().querySelector('#txt_trans_prompt').addEventListener('click', () => {
+      add_tool_btn(txt_parent, 'en2', 'txt_en2','translate prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
         show_trans_dialg(trans_config.to_lan, 21, 57, "txt2img Prompt")
-      }
-      );
-      gradioApp().querySelector('#txt_trans_neprompt').addEventListener('click', () => {
-        trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 393, 57, "txt2img Negative Prompt")
-      }
-      );
+      })
 
-      var img_html = `
-        <button class="gr-button gr-button-lg gr-button-tool" id="img_trans_prompt" title="translate prompt.">en2</button>
-        <button class="gr-button gr-button-lg gr-button-tool" id="img_trans_neprompt" title="translate negative prompt.">N2</button>
-      `
-      img_parent.innerHTML+=img_html
-      gradioApp().querySelector('#img_trans_prompt').addEventListener('click', () => {
+      add_tool_btn(txt_parent, 'N2', 'txt_N2','translate negative prompt.', ()=>{
+        trans_config.cur_tab_index = get_tab_index('tabs')
+        show_trans_dialg(trans_config.to_lan, 21, 57, "txt2img Negative Prompt")
+      })
+
+      add_tool_btn(img_parent, 'en2', 'img_en2','translate prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
         show_trans_dialg(trans_config.to_lan, 21, 57, "img2img Prompt")
-      }
-      );
-      gradioApp().querySelector('#img_trans_neprompt').addEventListener('click', () => {
+      })
+
+      add_tool_btn(img_parent, 'N2', 'img_N2','translate negative prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 393, 57, "img2img Negative Prompt")
-      }
-      );
+        show_trans_dialg(trans_config.to_lan, 21, 57, "img2img Negative Prompt")
+      })
     }
     
     var node = gradioApp().getElementById('auto_language_jsdiv')
