@@ -25,11 +25,11 @@ Use the Install from URL provided by webui to install
 
 Click in order Extensions - Install from URL
 
-Then fill in the first text box with https://github.com/hyd998877/Stable-Diffusion-Webui-Auto-Translate-Language, click the Install button.
+Then fill in the first text box with https://github.com/hyd998877/stable-diffusion-webui-auto-translate-language, click the Install button.
 
 #### Method 2
 ```
-git clone https://github.com/hyd998877/Stable-Diffusion-Webui-Auto-Translate-Language
+git clone https://github.com/hyd998877/stable-diffusion-webui-auto-translate-language
 cd Stable-Diffusion-Webui-Auto-Translate-Language
 pip install -r requirements.txt
 ```
@@ -41,4 +41,4 @@ pip install -r requirements.txt
 
 #### License
 
-[MIT Llicense](https://github.com/hyd998877/Stable-Diffusion-Webui-Auto-Translate-Language/blob/master/LICENSE)
+[MIT Llicense](https://github.com/hyd998877/stable-diffusion-webui-auto-translate-language/blob/master/LICENSE)
