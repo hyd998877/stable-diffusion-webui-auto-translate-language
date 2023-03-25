@@ -131,7 +131,7 @@ function read_file(filePath) {
   return request.responseText;
 }
 
-function download_localization() {
+function auto_download_localization() {
   try{
     var json = JSON.parse(read_file('localizations/my.json?time='+Date.now()))
     Object.keys(json).forEach(function(key){
@@ -688,7 +688,7 @@ function show_trans_dialg(to_lan, top, left, title) {
   function init() {
     trans_config = get_config()
     trans_config.trans_list = new Set()
-    download_localization()
+    auto_download_localization()
     
     // Add style to dom
     let $styleEL = document.createElement('style');
