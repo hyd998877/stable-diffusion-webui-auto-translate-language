@@ -300,7 +300,7 @@ function hide_trans_dialg() {
   });
 }
 
-function show_trans_dialg(to_lan, top, left, title) {
+function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
     if (document.getElementById('dialog_'+title)) {
       return
     }
@@ -426,7 +426,7 @@ function show_trans_dialg(to_lan, top, left, title) {
       if (inputText.length==0) {return}
       const translatedText = local_trans(inputText, false, false, true);
       if (translatedText.length==0 || translatedText==inputText) {return}
-      const prompt = getActivePrompt();
+      const prompt = getPrompt_fun();
       if (prompt.value.length==0)
         prompt.value = translatedText
       else
@@ -463,7 +463,7 @@ function show_trans_dialg(to_lan, top, left, title) {
       }else{
         const translatedText = local_trans(inputText, false, false, true);
         if (translatedText.length==0 || translatedText==inputText) {return}
-        const prompt = getActivePrompt();
+        const prompt = getPrompt_fun();
         prompt.value = translatedText
         trans_config[title] = inputText
         trans_config[title+'trans'] = translatedText
@@ -491,7 +491,7 @@ function show_trans_dialg(to_lan, top, left, title) {
     backButton.style.color = 'white';
     backButton.style.fontSize = '16px';
     backButton.addEventListener('click', () => {
-      const prompt = getActivePrompt();
+      const prompt = getPrompt_fun();
       const inputText = prompt.value;
       if (inputText.length==0) {return}
       if (inputText == trans_config[title+'trans']) {
@@ -550,22 +550,22 @@ function show_trans_dialg(to_lan, top, left, title) {
     if(!gradioApp().getElementById('txt_trans_prompt')){
       add_tool_btn(txt_parent, 'en2', 'txt_en2','translate prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 21, 57, "txt2img Prompt")
+        show_trans_dialg(trans_config.to_lan, 21, 57, "txt2img Prompt", getActivePrompt)
       })
 
       add_tool_btn(txt_parent, 'N2', 'txt_N2','translate negative prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 21, 57, "txt2img Negative Prompt")
+        show_trans_dialg(trans_config.to_lan, 340, 57, "txt2img Negative Prompt", getActiveNegativePrompt)
       })
 
       add_tool_btn(img_parent, 'en2', 'img_en2','translate prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 21, 57, "img2img Prompt")
+        show_trans_dialg(trans_config.to_lan, 21, 57, "img2img Prompt",getActivePrompt)
       })
 
       add_tool_btn(img_parent, 'N2', 'img_N2','translate negative prompt.', ()=>{
         trans_config.cur_tab_index = get_tab_index('tabs')
-        show_trans_dialg(trans_config.to_lan, 21, 57, "img2img Negative Prompt")
+        show_trans_dialg(trans_config.to_lan, 340, 57, "img2img Negative Prompt", getActiveNegativePrompt)
       })
     }
     
