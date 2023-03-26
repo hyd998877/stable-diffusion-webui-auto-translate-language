@@ -157,8 +157,8 @@ function getTranslation(text){
 
         if(typeof(trans_config)!='undefined' && trans_config.show_en_enabled)
           tl = text+'/'+tl
-        else
-          tl = text
+        // else
+        //   tl = text
     }else{
         if (containsEnWorld(text)) {
           // local_trans(text)
