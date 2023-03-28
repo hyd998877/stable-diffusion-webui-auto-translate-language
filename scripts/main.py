@@ -34,6 +34,7 @@ textbox_info = None
 end_trans_btn = None
 m_temp_trans_list = None
 m_temp_transed_num = 0
+trans_data = None
 
 m_trans_dict = LRU(1000)
 
@@ -55,9 +56,9 @@ def update_json_key(filename, data, key, value):
     # print(f'{filename} update: {key}={value}')
 
 def update_json_file(filename,data):
-    if not data:
-        print('data is None')
-        return
+    # if not data:
+    #     print('data is None')
+    #     return
     # 保存 JSON 文件
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4)
@@ -101,10 +102,11 @@ def update_info():
 def auto_remove_trans():
     global trans_data
     global trans_succ
+    print('auto_remove_trans', trans_succ)
     if trans_succ==0:
         return
     trans_succ = 0
-    trans_data = []
+    trans_data = {}
     update_json_file(trans_file,trans_data)
 
     textbox_info.update(f'Auto Translate Num:{trans_succ}')
