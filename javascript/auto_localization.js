@@ -591,7 +591,7 @@ function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
     var btn_class = gradioApp().getElementById('remove_trans_btn').classList.value
     modal.innerHTML = `
     <div class="flex row w-full flex-wrap gap-4">
-      <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="flex-direction: inherit;"  style="display: flex;">
+      <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="display: flex;">
         <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
           <label class="block w-full"><span class="" style="width: 100%;display: block;">ui text</span> 
           <textarea id="text_local_item" data-testid="textbox" class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="need input your want to translate" rows="3" style="overflow-y: scroll; height: 84px;"></textarea>
