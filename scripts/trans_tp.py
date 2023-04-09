@@ -7,7 +7,7 @@ def init_transers(transers):
 	        transers.append('tp_'+ts.server.__all__[x])
 
 class TpTranslate():
-    def __init__(self, translator):
+    def __init__(self, translator='bing'):
         print('init TpTranslate')
         self.translator = translator
 
@@ -16,7 +16,7 @@ class TpTranslate():
         if input_lang == None:
         	input_lang = 'auto'
         try:
-        	res_txt = ts.translate_text(input_string, from_language=input_lang, to_language=output_lang)
+        	res_txt = ts.translate_text(input_string, from_language=input_lang, to_language=output_lang, translator=self.translator)
         except Exception as e:
         	print(e)
             
