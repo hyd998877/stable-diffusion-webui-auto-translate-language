@@ -63,11 +63,20 @@ function get_config(filePath) {
 }
 
 function auto_save_setting() {
+  var to_lan = null
+  var transer = null
+  if(gradioApp().querySelector('#auto_to_lang select')){
+    to_lan = gradioApp().querySelector('#auto_to_lang select').value
+    transer = gradioApp().querySelector('#auto_langer_drop select').value
+  }else{
+    to_lan = gradioApp().querySelector('#auto_to_lang .single-select').innerHTML
+    transer = gradioApp().querySelector('#auto_langer_drop .single-select').innerHTML
+  }
   var data = {
     // auto_language_enabled:gradioApp().querySelector('#auto_language_enabled input').checked,
-    show_en_enabled:gradioApp().querySelector('#show_en_enabled input').checked,
-    to_lan:gradioApp().querySelector('#auto_to_lang select').value,
-    transer:gradioApp().querySelector('#auto_langer_drop select').value
+    show_en_enabled: gradioApp().querySelector('#show_en_enabled input').checked,
+    to_lan: to_lan,
+    transer: transer
   }
   
 
@@ -536,6 +545,12 @@ function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
       btn.classList.add('gr-button')
       btn.classList.add('gr-button-lg')
       btn.classList.add('gr-button-tool')
+      btn.classList.add('lg')
+      btn.classList.add('secondary')
+      btn.classList.add('gradio-button')
+      btn.classList.add('tool')
+      btn.classList.add('svelte-1ipelgc')
+       
       btn.id=id
       btn.title = title
       parent.appendChild(btn)
@@ -573,24 +588,25 @@ function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
     if(!node) return false;
     var session = node
     const modal = document.createElement('div')
+    var btn_class = gradioApp().getElementById('remove_trans_btn').classList.value
     modal.innerHTML = `
     <div class="flex row w-full flex-wrap gap-4">
-      <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="flex-direction: inherit;">
+      <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="flex-direction: inherit;"  style="display: flex;">
         <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
-          <label class="block w-full"><span class="text-gray-500 text-[0.855rem] mb-2 block dark:text-gray-200 relative z-40">ui text</span> 
+          <label class="block w-full"><span class="" style="width: 100%;display: block;">ui text</span> 
           <textarea id="text_local_item" data-testid="textbox" class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="need input your want to translate" rows="3" style="overflow-y: scroll; height: 84px;"></textarea>
           </label>
         </div>
         <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
-          <label class="block w-full"><span class="text-gray-500 text-[0.855rem] mb-2 block dark:text-gray-200 relative z-40">translated text</span> 
+          <label class="block w-full"><span class="" style="width: 100%;display: block;">translated text</span> 
           <textarea  id="text_local_tran"  class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="Can be empty, indicating no translation" rows="3" style="overflow-y: scroll; height: 84px;"></textarea></label>
         </div>
       </div>
     </div>
     <div class="flex row w-full flex-wrap gap-4">
-      <button class="gr-button gr-button-lg gr-button-secondary" id="local_load_btn">load</button>
-      <button class="gr-button gr-button-lg gr-button-secondary" id="local_load_tran">translate</button>
-      <button class="gr-button gr-button-lg gr-button-secondary" id="local_load_save">save</button>
+      <button class="${btn_class}" id="local_load_btn">load</button>
+      <button class="${btn_class}" id="local_load_tran">translate</button>
+      <button class="${btn_class}" id="local_load_save">save</button>
     </div>
     `
     session.appendChild(modal);
