@@ -68,9 +68,15 @@ function auto_save_setting() {
   if(gradioApp().querySelector('#auto_to_lang select')){
     to_lan = gradioApp().querySelector('#auto_to_lang select').value
     transer = gradioApp().querySelector('#auto_langer_drop select').value
-  }else{
+  }else if(gradioApp().querySelector('#auto_to_lang .single-select')){
     to_lan = gradioApp().querySelector('#auto_to_lang .single-select').innerHTML
     transer = gradioApp().querySelector('#auto_langer_drop .single-select').innerHTML
+  }else if(gradioApp().querySelector('#auto_to_lang input')){
+    to_lan = gradioApp().querySelector('#auto_to_lang input').value
+    transer = gradioApp().querySelector('#auto_langer_drop input').value
+  }else{
+    showToast('please update trans version or pull a issues')
+    return
   }
   var data = {
     // auto_language_enabled:gradioApp().querySelector('#auto_language_enabled input').checked,
