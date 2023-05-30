@@ -14,11 +14,11 @@ from fastapi import FastAPI, Response, Body
 
 from scripts.lan import lans
 
-from scripts.trans_google import GoogleTranslate
+# from scripts.trans_google import GoogleTranslate
 from scripts.trans_youdao import YoudaoTranslate
 from scripts.trans_tp import TpTranslate,init_transers
 
-transers = ['free_google', 'free_youdao_zh']
+transers = ['free_youdao_zh']
 init_transers(transers)
 transer = None
 # Webui root path
@@ -68,9 +68,9 @@ def update_json_file(filename,data):
 def check_transer():
     global transer
     cur_transer = trans_config['transer']
-    if cur_transer == 'free_google':
-        transer = GoogleTranslate()
-    elif cur_transer == 'free_youdao_zh':
+    # if cur_transer == 'free_google':
+    #     transer = GoogleTranslate()
+    if cur_transer == 'free_youdao_zh':
         transer = YoudaoTranslate()
     else:
         if cur_transer.startswith("tp_"):
@@ -194,6 +194,7 @@ def transAPI(demo: gr.Blocks, app: FastAPI):
         res_text = ''
         global trans_succ
         global m_trans_dict
+        global trans_data
         if len(text) > 0:
             print('text', text, save, en)
             if text in trans_data:
@@ -222,6 +223,7 @@ def transAPI(demo: gr.Blocks, app: FastAPI):
         global m_trans_dict
         global m_temp_trans_list
         global m_temp_transed_num
+        global trans_data
         for text in m_temp_trans_list:
             m_temp_transed_num = m_temp_transed_num + 1
             if text in trans_data or text in m_trans_dict:
@@ -274,6 +276,7 @@ def transAPI(demo: gr.Blocks, app: FastAPI):
 
     @app.get("/trans/local_save_trans")
     async def local_save_trans(text, tran):
+        global trans_data
         res_data = {"error": 0}
         if len(text) > 0:
             update_json_key(trans_file,trans_data, text, tran)
