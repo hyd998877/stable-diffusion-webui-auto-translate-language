@@ -591,84 +591,84 @@ function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
     }
     
     var node = gradioApp().getElementById('auto_language_jsdiv')
-    if(!node) return false;
-    var session = node
-    const modal = document.createElement('div')
-    var btn_class = gradioApp().getElementById('remove_trans_btn').classList.value
-    modal.innerHTML = `
-    <div class="flex row w-full flex-wrap gap-4">
-      <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="display: flex;">
-        <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
-          <label class="block w-full"><span class="" style="width: 100%;display: block;">ui text</span> 
-          <textarea id="text_local_item" data-testid="textbox" class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="need input your want to translate" rows="3" style="overflow-y: scroll; height: 84px;"></textarea>
-          </label>
-        </div>
-        <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
-          <label class="block w-full"><span class="" style="width: 100%;display: block;">translated text</span> 
-          <textarea  id="text_local_tran"  class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="Can be empty, indicating no translation" rows="3" style="overflow-y: scroll; height: 84px;"></textarea></label>
+    if(node){
+      var session = node
+      const modal = document.createElement('div')
+      var btn_class = gradioApp().getElementById('remove_trans_btn').classList.value
+      modal.innerHTML = `
+      <div class="flex row w-full flex-wrap gap-4">
+        <div class="gr-form flex border-solid border bg-gray-200 dark:bg-gray-700 gap-px rounded-lg flex-wrap" style="display: flex;">
+          <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
+            <label class="block w-full"><span class="" style="width: 100%;display: block;">ui text</span> 
+            <textarea id="text_local_item" data-testid="textbox" class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="need input your want to translate" rows="3" style="overflow-y: scroll; height: 84px;"></textarea>
+            </label>
+          </div>
+          <div class="gr-block gr-box relative w-full border-solid border border-gray-200 gr-padded"> 
+            <label class="block w-full"><span class="" style="width: 100%;display: block;">translated text</span> 
+            <textarea  id="text_local_tran"  class="scroll-hide block gr-box gr-input w-full gr-text-input" placeholder="Can be empty, indicating no translation" rows="3" style="overflow-y: scroll; height: 84px;"></textarea></label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="flex row w-full flex-wrap gap-4">
-      <button class="${btn_class}" id="local_load_btn">load</button>
-      <button class="${btn_class}" id="local_load_tran">translate</button>
-      <button class="${btn_class}" id="local_load_save">save</button>
-    </div>
-    `
-    session.appendChild(modal);
+      <div class="flex row w-full flex-wrap gap-4">
+        <button class="${btn_class}" id="local_load_btn">load</button>
+        <button class="${btn_class}" id="local_load_tran">translate</button>
+        <button class="${btn_class}" id="local_load_save">save</button>
+      </div>
+      `
+      session.appendChild(modal);
 
-    gradioApp().getElementById('local_load_btn').addEventListener('click', () => {
-      var text_local_item = gradioApp().querySelector('#text_local_item')
-      var text_local_tran = gradioApp().querySelector('#text_local_tran')
-      if (text_local_item.value.length==0) {
-        return
-      }
-      var out_txt = localization[text_local_item.value]
-      if (out_txt) {
-        text_local_tran.value = out_txt
-        text_local_tran.placeholder = 'find but no translated:'+text_local_item.value
-      }else{
-        text_local_tran.value = ''
-        text_local_tran.placeholder = 'no find:'+text_local_item.value
-      }
-      
-    }
-    );
-    gradioApp().getElementById('local_load_tran').addEventListener('click', () => 
-      {
+      gradioApp().getElementById('local_load_btn').addEventListener('click', () => {
         var text_local_item = gradioApp().querySelector('#text_local_item')
         var text_local_tran = gradioApp().querySelector('#text_local_tran')
         if (text_local_item.value.length==0) {
-          text_local_item.placeholder = 'empty strings cannot be translated'
           return
         }
-        var out_txt = local_trans(text_local_item.value, false)// no save
-        if (out_txt && out_txt.length>0 && out_txt!=text_local_item.value) {
+        var out_txt = localization[text_local_item.value]
+        if (out_txt) {
           text_local_tran.value = out_txt
+          text_local_tran.placeholder = 'find but no translated:'+text_local_item.value
         }else{
           text_local_tran.value = ''
-          text_local_tran.placeholder = 'translated fail:'+text_local_item.value
+          text_local_tran.placeholder = 'no find:'+text_local_item.value
         }
+        
       }
-    );
-    gradioApp().getElementById('local_load_save').addEventListener('click', () => 
-      {
-        var text_local_item = gradioApp().querySelector('#text_local_item')
-        var text_local_tran = gradioApp().querySelector('#text_local_tran')
-        if (text_local_item.value.length==0) {
-          text_local_item.placeholder = 'empty cannot be saved'
-          return
+      );
+      gradioApp().getElementById('local_load_tran').addEventListener('click', () => 
+        {
+          var text_local_item = gradioApp().querySelector('#text_local_item')
+          var text_local_tran = gradioApp().querySelector('#text_local_tran')
+          if (text_local_item.value.length==0) {
+            text_local_item.placeholder = 'empty strings cannot be translated'
+            return
+          }
+          var out_txt = local_trans(text_local_item.value, false)// no save
+          if (out_txt && out_txt.length>0 && out_txt!=text_local_item.value) {
+            text_local_tran.value = out_txt
+          }else{
+            text_local_tran.value = ''
+            text_local_tran.placeholder = 'translated fail:'+text_local_item.value
+          }
         }
-        local_save_trans(text_local_item.value, text_local_tran.value)
-        localization[text_local_item.value] = text_local_tran.value
-        showToast('save successful')
-      }
-    );
-    gradioApp().getElementById('save_trans_setting_btn').addEventListener('click', () => 
-      {
-        auto_save_setting()
-      }
-    );
+      );
+      gradioApp().getElementById('local_load_save').addEventListener('click', () => 
+        {
+          var text_local_item = gradioApp().querySelector('#text_local_item')
+          var text_local_tran = gradioApp().querySelector('#text_local_tran')
+          if (text_local_item.value.length==0) {
+            text_local_item.placeholder = 'empty cannot be saved'
+            return
+          }
+          local_save_trans(text_local_item.value, text_local_tran.value)
+          localization[text_local_item.value] = text_local_tran.value
+          showToast('save successful')
+        }
+      );
+      gradioApp().getElementById('save_trans_setting_btn').addEventListener('click', () => 
+        {
+          auto_save_setting()
+        }
+      );
 
     gradioApp().getElementById('auto_trans_to_en').addEventListener('click', () => 
       {
@@ -702,6 +702,7 @@ function show_trans_dialg(to_lan, top, left, title, getPrompt_fun) {
         })
       }
     );
+    }
 
     trans_config.is_init = true
     return true
